@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>NarratAI</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Space Grotesk', sans-serif;
+        background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+        color: #e6ffe6;
+        width: 500px;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 20px;
+      }
+
+      .logo {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 12px;
+        filter: drop-shadow(0 0 10px #00ff88aa);
+      }
+
+      h2 {
+        font-size: 26px;
+        color: #00ff88;
+        text-align: center;
+        margin-bottom: 20px;
+        text-shadow: 0 0 10px #00ff8855;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(0, 255, 136, 0.2);
+        backdrop-filter: blur(10px);
+        padding: 20px;
+        border-radius: 16px;
+        width: 100%;
+        box-shadow: 0 0 20px rgba(0, 255, 136, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      select {
+        flex-grow: 1;
+        padding: 10px 15px;
+        font-size: 14px;
+        font-family: inherit;
+        font-weight: bold;
+        border: 1px solid #00ff88;
+        border-radius: 8px;
+        background: #101010;
+        color: #00ff88;
+        appearance: none;
+        background-image: url("data:image/svg+xml;utf8,<svg fill='%2300ff88' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 16px;
+        padding-right: 35px;
+        transition: all 0.2s ease;
+      }
+
+      select:focus {
+        outline: none;
+        box-shadow: 0 0 8px #00ff88;
+      }
+
+      button {
+        padding: 10px 15px;
+        font-weight: bold;
+        border-radius: 8px;
+        font-size: 14px;
+        font-family: inherit;
+        cursor: pointer;
+        border: none;
+        transition: all 0.2s ease-in-out;
+      }
+
+      button:hover {
+        box-shadow: 0 0 10px #00ff88;
+      }
+
+      #summarize {
+        background-color: #00ff88;
+        color: #0d0d0d;
+      }
+
+      #copy-btn {
+        background-color: transparent;
+        color: #00ff88;
+        border: 1px solid #00ff88;
+      }
+
+      #copy-btn:hover {
+        background-color: #111;
+      }
+
+      #result {
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid #00ff8860;
+        border-radius: 12px;
+        min-height: 130px;
+        max-height: 200px;
+        overflow-y: auto;
+        white-space: pre-wrap;
+        line-height: 1.6;
+        color: #e0ffe0;
+        font-size: 14px;
+        box-shadow: inset 0 0 10px rgba(0, 255, 136, 0.05);
+      }
+
+      #result::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      #result::-webkit-scrollbar-thumb {
+        background: #00ff88;
+        border-radius: 10px;
+      }
+
+      .loader {
+        margin: auto;
+        border: 5px solid #1a1a1a;
+        border-top: 5px solid #00ff88;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      footer {
+        margin-top: 10px;
+        font-size: 12px;
+        text-align: center;
+        color: #888;
+      }
+
+      footer a {
+        color: #00ff88;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="icon.png" alt="NarratAI Logo" class="logo" />
+    <h2>NarratAI - summarize pages</h2>
+
+    <div class="card">
+      <div class="options">
+        <select id="summary-type">
+          <option value="brief">Brief Summary</option>
+          <option value="detailed">Detailed Summary</option>
+          <option value="bullets">Bullet Points</option>
+        </select>
+        <button id="summarize">Summarize</button>
+        <button id="copy-btn">Copy</button>
+      </div>
+
+      <div id="result" class="neon-box" style="text-align: center; color:#00ff88;">
+        Select a summary type and click <strong style="color: #eafff1;">Summarize</strong>
+      </div>
+
+    </div>
+
+    <script src="config.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
